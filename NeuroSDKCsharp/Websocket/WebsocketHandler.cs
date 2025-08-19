@@ -134,7 +134,7 @@ public class WebsocketHandler
         
         try
         {
-            await _webSocket!.SendAsync(sendBytes, WebSocketMessageType.Text, true, CancellationToken.None);
+            await _webSocket!.SendAsync(new ArraySegment<byte>(sendBytes), WebSocketMessageType.Text, true, CancellationToken.None);
         }
         catch (Exception e)
         {
@@ -160,7 +160,7 @@ public class WebsocketHandler
         Console.WriteLine($"Sending Immediate message {message}");
 
         var sendBytes = Encoding.UTF8.GetBytes(message);
-        await _webSocket!.SendAsync(sendBytes, WebSocketMessageType.Text, false, CancellationToken.None);
+        await _webSocket!.SendAsync(new ArraySegment<byte>(sendBytes), WebSocketMessageType.Text, false, CancellationToken.None);
     }
 
     private async Task ReceiveMessage()
@@ -180,7 +180,7 @@ public class WebsocketHandler
             MemoryStream memoryStream = new MemoryStream();
             do
             {
-                result = await _webSocket.ReceiveAsync(buffer, CancellationToken.None);
+                result = await _webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
                 memoryStream.Write(buffer,0,result.Count);
             } while (!result.EndOfMessage);
             

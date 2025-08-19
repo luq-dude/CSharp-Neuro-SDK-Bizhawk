@@ -1,4 +1,6 @@
-# Neuro SDK for C# / MonoGame
+# Neuro SDK for C#
+
+This fork is made specifically to work alongside the [BizHawk Emulator](https://github.com/TASEmulators/BizHawk) in an external tool. Use the upstream repo for a more general purpose solution.
 
 ## This is not meant to be used with unity.
 This SDK is not intended for use with Unity or Unity game modding. The [official Unity SDK](https://github.com/VedalAI/neuro-game-sdk/tree/main/Unity) should be used for those purposes.
