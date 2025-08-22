@@ -52,6 +52,18 @@ public class WebsocketHandler
         }
     }
 
+    public void Disconnect(string reason)
+    {
+        if (_webSocket?.State == WebSocketState.Open)
+        {
+            _webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, reason, default);
+        }
+
+        _webSocket?.Abort();
+
+        Instance = null;        
+    }
+
     private async Task Reconnect(bool fromUpdate = false)
     {
         if (_tryingReconnect && fromUpdate) return;
